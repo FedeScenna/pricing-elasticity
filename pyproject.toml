@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pricing-elasticity"
+version = "0.2.0"
+description = "Bayesian price elasticity of demand estimation with PyMC: log-log, AIDS and BLP."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Federico Scenna" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pymc>=5.16",
+    "arviz>=0.17",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pricing_elasticity"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: runs MCMC sampling (deselect with -m 'not slow')"]
